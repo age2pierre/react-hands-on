@@ -1,0 +1,101 @@
+{
+  "name": "boilerplate-react",
+  "version": "0.1.0",
+  "description": "A simple opinionated boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/age2pierre/boilerplate-react.git"
+  },
+  "license": "ISC",
+  "main": "src/index.tsx",
+  "scripts": {
+    "build": "npm run typecheck && parcel build --experimental-scope-hoisting src/index.html",
+    "format": "prettier --write 'src/'",
+    "gql": "concurrently 'npm:gql-*'",
+    "gql-report": "ts-graphql-plugin report --verbose -o docs/GRAPHQL_OPERATIONS.md",
+    "gql-typegen": "rimraf src/**/__generated__ && ts-graphql-plugin typegen --verbose",
+    "gql-validate": "ts-graphql-plugin validate --verbose",
+    "lint": "concurrently 'npm:lint-*'",
+    "lint-css": "stylelint --fix './src/**/*.{ts,tsx}'",
+    "lint-js": "eslint -c .eslintrc.json --fix 'src/**/*.{ts,tsx}'",
+    "pre-push": "concurrently 'npm:lint-*' 'npm:gql-*' && npm run format && concurrently 'npm:type-*' 'npm:test'",
+    "start": "parcel serve src/index.html --open --no-autoinstall",
+    "test": "jest",
+    "type-check": "tsc --project tsconfig.json --noEmit",
+    "type-coverage": "type-coverage --detail -p ./tsconfig.json --strict --ignore-catch --at-least 99",
+    "upgrade-interactive": "npm-check --update"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run pre-push"
+    }
+  },
+  "lint-staged": {
+    "*.{json,scss,css,html,md,mdx}": [
+      "prettier --write"
+    ],
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "package.json": [
+      "sort-package-json"
+    ]
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "not dead"
+  ],
+  "dependencies": {
+    "@material-ui/core": "4.10.1",
+    "@material-ui/icons": "4.9.1",
+    "graphql": "14.5.8",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-router-dom": "5.2.0",
+    "utility-types": "3.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.10.2",
+    "@babel/preset-typescript": "7.10.1",
+    "@types/jest": "26.0.0",
+    "@types/node": "14.0.13",
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.8",
+    "@types/react-router-dom": "5.1.5",
+    "@types/react-test-renderer": "16.9.2",
+    "@typescript-eslint/eslint-plugin": "3.2.0",
+    "@typescript-eslint/parser": "3.2.0",
+    "autoprefixer": "9.8.0",
+    "babel-plugin-graphql-tag": "2.5.0",
+    "concurrently": "5.2.0",
+    "eslint": "7.2.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react-hooks": "4.0.4",
+    "eslint-plugin-simple-import-sort": "5.0.3",
+    "graphql-tag": "2.10.3",
+    "husky": "4.2.5",
+    "jest": "26.0.1",
+    "lint-staged": "10.2.9",
+    "npm-check": "5.9.2",
+    "parcel-bundler": "1.12.4",
+    "parcel-plugin-bundle-visualiser": "1.2.0",
+    "postcss-modules": "2.0.0",
+    "prettier": "2.0.5",
+    "react-test-renderer": "16.13.1",
+    "rimraf": "3.0.2",
+    "sass": "1.26.8",
+    "sort-package-json": "1.44.0",
+    "stylelint": "13.6.0",
+    "stylelint-config-recommended": "3.0.0",
+    "ts-graphql-plugin": "1.12.0",
+    "ts-jest": "26.1.0",
+    "type-coverage": "2.7.1",
+    "typescript": "3.9.5",
+    "typescript-plugin-css-modules": "2.3.0"
+  }
+}
