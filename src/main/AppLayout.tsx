@@ -9,8 +9,10 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core'
-import { DeveloperMode } from '@material-ui/icons'
+import { PanTool } from '@material-ui/icons'
 import React, { ReactNode } from 'react'
+
+import { NavButtons } from './routes'
 
 const DRAWER_WIDTH = 240
 
@@ -34,6 +36,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       flexGrow: 1,
+      padding: theme.spacing(3),
+    },
+    title: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(3),
     },
   }),
 )
@@ -46,10 +53,13 @@ export const AppLayout = (props: {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="sticky">
-        <DeveloperMode />
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6">React hands on</Typography>
+          <PanTool />
+          <Typography className={classes.title} variant="h6">
+            on React
+          </Typography>
+          <NavButtons />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -58,11 +68,14 @@ export const AppLayout = (props: {
         classes={{
           paper: classes.drawerPaper,
         }}
+        anchor="left"
       >
+        <Toolbar />
         <div className={classes.drawerContainer}>{props.drawerContent}</div>
       </Drawer>
       <main className={classes.content}>
-        <Container maxWidth="sm">{props.mainContent}</Container>
+        <Toolbar />
+        <Container maxWidth="md">{props.mainContent}</Container>
       </main>
     </div>
   )

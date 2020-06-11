@@ -40,13 +40,13 @@
     ]
   },
   "rules": {
-    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react/display-name": "off",
     "simple-import-sort/sort": "error",
     "sort-imports": "off",
     "import/order": "off",
-    "no-unsafe-call": true,
     "react/self-closing-comp": [
       "error",
       {
