@@ -11,10 +11,6 @@ const SNIPPETS = {
     text: readFileSync(__dirname + '/../snippets/snip01.tsx', 'utf-8'),
     component: Snip01,
   },
-  snip02: {
-    text: readFileSync(__dirname + '/../snippets/snip01.tsx', 'utf-8'),
-    component: CodeBlock,
-  },
 } as const
 
 const useStyles = makeStyles(theme =>

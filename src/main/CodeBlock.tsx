@@ -22,6 +22,7 @@ export const CodeBlock = (props: {
         }
         const newHeight =
           (editor.getSession().getScreenLength() + 1.5) * // + 1.5 for horizontal scrollbar
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (editor.renderer as any).lineHeight
         setHeight(newHeight >= 70 ? newHeight : 70)
       }}
