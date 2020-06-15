@@ -18,7 +18,7 @@
     "lint": "concurrently 'npm:lint-*'",
     "lint-css": "stylelint --fix './src/**/*.{ts,tsx}'",
     "lint-js": "eslint -c .eslintrc.json --fix 'src/**/*.{ts,tsx}'",
-    "pre-push": "concurrently 'npm:lint-*' && npm run format && concurrently 'npm:type-*' 'npm:test'",
+    "pre-push": "concurrently 'npm:lint-*' && npm run format && concurrently 'npm:type-check' 'npm:test'",
     "start": "parcel serve src/index.html --open --no-autoinstall",
     "test": "jest",
     "type-check": "tsc --project tsconfig.json --noEmit",
