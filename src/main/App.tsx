@@ -15,6 +15,13 @@ const theme = createMuiTheme({
       main: teal[400],
     },
   },
+  typography: {
+    htmlFontSize: 16,
+    fontSize: 16,
+    allVariants: {
+      lineHeight: 1.5,
+    },
+  },
 })
 
 export const App = () => {

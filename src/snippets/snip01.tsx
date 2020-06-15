@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface AppProps {
+export interface AppProps {
   lang: 'en' | 'fr'
   name: string
 }

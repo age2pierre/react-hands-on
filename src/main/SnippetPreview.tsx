@@ -50,6 +50,7 @@ export const SnippetPreview = (props: {
         <Tab label="Props" />
       </Tabs>
       {tabValue === 0 ? (
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         SNIPPETS[props.file].component(previewProps.obj as any)
       ) : (
         <CodeBlock
