@@ -11,7 +11,7 @@ export const CodeBlock = (props: {
 
   return (
     <AceEditor
-      mode="typescript"
+      mode="tsx"
       theme="monokai"
       name="codeblock"
       fontSize={14}

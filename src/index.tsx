@@ -1,5 +1,5 @@
 import 'ace-builds'
-import 'ace-builds/src-noconflict/mode-typescript'
+import 'ace-builds/src-noconflict/mode-tsx'
 import 'ace-builds/src-noconflict/theme-monokai'
 
 import React from 'react'
