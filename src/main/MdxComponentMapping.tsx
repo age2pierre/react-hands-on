@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/display-name */
+import { Alert } from '@material-ui/lab'
 import { ComponentDictionary } from '@mdx-js/react'
 import React from 'react'
 
@@ -7,7 +8,7 @@ import { CodeBlock } from './CodeBlock'
 
 export const MdxComponentMapping: ComponentDictionary = {
   a: (props: any) => <a {...props} />,
-  blockquote: (props: any) => <blockquote {...props} />,
+  blockquote: (props: any) => <Alert icon={false} severity="info" {...props} />,
   code: CodeBlock,
   // delete: (props: any) => <delete {...props} />,
   em: (props: any) => <em {...props} />,
