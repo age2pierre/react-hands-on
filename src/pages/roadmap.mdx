@@ -1,0 +1,31 @@
+# Roadmap
+
+- What is React ? What problem does it solve ? What it is not ?
+- Hello world !
+  - What is the minimal app ? it's a function that has an input (state) and output a model of the UI (VDom).
+  - React jobs is to render this model the most efficient way (it tries to optimize repaint call, doing the dirty imperative error-prone job for you).
+  - Bootstraping aka rendering your app ? ReactDOM.render
+  - The UI model aka the VDOM ? React.createElement(type: "div", props?: Props, ...children: React.ReactNode[]): React.ReactNode <==> JSX
+  - **Exercice 0** : Look at how this example is set-up, will not go into the bundling, setting dev tool. Mention CRA / Parcel / Gatbsy / Nextjs.
+- Children !
+  - Parent to children communication aka passing down props ? TS prop types, special children attribute, React.ReactNode type
+  - Exercice 1 :
+    You have an App component to complete, it receive a character sheet for RPG as prop (`{ characSheet: Record<string, number>, sort: 'ALPHA' | 'RANDOM' }`)
+    Assets => Wireframe + label component + an number input + layout css
+    Bonus : Try to make the sort feature
+  - Learn about diffing + key props
+  - The slot pattern aka the React.Node type.
+  - Exercice 1 Bis : Go back and do the sort and thinking about perf + separating layout and cell comp (`{ renderCell: ([string, number]) => React.Node }`)
+- The HP bar
+  - le compteur, cf useState => local state management
+  - Pure/Impure, Dumb/smart, the container pattern (for storybook, testing, refactoring)
+  - Excercie 2 : Making the dumb Hp bar `<HpBar value={4} max={10} labels={['-6', '-4', '-2']} />`
+  - Children to parent => using callbacks (withou useCallback), no double binding
+  - Exercice 3: Create container with local state + handle click
+- Effects !
+  - Fetch charac sheet from API, see https://www.robinwieruch.de/react-hooks-fetch-data
+- character vault
+  - CRUD reducer + immer + lift state up into context
+- Virtual table (intro to three )
+- Routing between different character sheets
+  - React router

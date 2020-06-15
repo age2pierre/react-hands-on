@@ -1,24 +1,142 @@
 import { SnippetPreview } from '../main/SnippetPreview.tsx'
 
-# Hello, world!
+# Hello world !
 
-This is MDX!
+## A minimal app
 
-```typescript
-interface AppProps {
-  lang: 'en' | 'fr'
-  name: string
-}
-export const App = (props: AppProps) => {
-  return (
-    <div>
-      <h1>Hello world</h1>
-      {props.lang === 'en' ? (
-        <p>{`Congrats ${props.name} !`}</p>
-      ) : (
-        <p>{`Bravo ${props.name} !`}</p>
-      )}
-    </div>
-  )
-}
+What is the minimal front-end app possible ?
+To its core, it's just a (pure) function that renders some user interfaces elements on screen.
+In a webapp those UI elements are modeled by a tree structure object, known as the DOM.
+Optionnaly this function can have an input, and we'll call that input the state of the app.
+
+```tsx
+declare const App: (input: AppState) => HTMLElement
 ```
+
+Translated into React terms, the minimal app is a one component App.
+The input of this component is called **Props** (short for properties);
+and contrary to bare metal JS app, UI elements are not represented by the DOM
+but by an other intermediary structure called **vDOM**.
+
+```tsx
+import React from 'react'
+
+interface AppState {
+  hello: string
+}
+
+declare const App: (props: AppState) => React.ReactNode
+```
+
+## Bootstraping
+
+But to actually render anything on the screen our component/app/function needs to be called,
+and it's result (the vDOM elements) need to be interpredeted/translated into real DOM elements.
+In order to do, because the package `react` is platform agnostic (it only handles vdom diffing, state, side effects, etc...)
+you'll need to import from a new package `react-dom` the function `render`, it'will reconcile the vDOM and the actual DOM.
+
+```tsx
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+import { App } from './App'
+
+ReactDOM.render(
+  React.createElement(App, {
+    hello: 'world',
+  }),
+  document.getElementById('root'),
+)
+```
+
+The render function also need the reference to an existing dom element to "mount" the entire app into it,
+you'll need to pass this ref as the second argument of the render function.
+In the rest of this tutorial you'll not have to worry about mounting your app/component, you'll be coding inside another app (this one) already bootstraped into the DOM.
+
+## JSX vs React.createElement
+
+```tsx
+React.createElement(type, [props], [...children])
+```
+
+Create and return a new React element of the given type. The type argument can be either a tag name string (such as 'div' or 'span'), a React component type (a class or a function), or a React fragment type.
+Code written with JSX will be converted to use React.createElement(). You will not typically invoke React.createElement() directly if you are using JSX.
+
+For example, this piece of JSX/TSX :
+
+```tsx
+const App = () => (
+  <div>
+    <h1>Big title</h1>
+    <MyAwesomeComp
+      size="sm"
+      content={{
+        datum: 42,
+      }}
+    />
+  </div>
+)
+```
+
+It will be converted by the parser (tsc or babel) into :
+
+```tsx
+const App = () =>
+  React.createElement(
+    'div',
+    null,
+    React.createElement('h1', null, 'Big title'),
+    React.createElement(MyAwesomeComp, {
+      size: 'sm',
+      content: {
+        datum: 42,
+      },
+    }),
+  )
+```
+
+A few thing to remember when using JSX :
+
+- JSX native elements are writem in lower case `<div></div>, <hr />...`
+- Your component are written in Pascal case `<MyComp />, <NavMenu></NavMenu>`
+- Every component can be written as a self closing tag if it has no children `<div />, <hr />`
+- You need `import React from 'react'` on top of your file - even if you don't write it `React.createElement` will still be called.
+- You can nest any JS/TS **expression** using curling `{}`.
+
+```tsx
+// it can be used to escape children
+<div>{`This is a string template ${props.name} !`}</div>
+
+// or it can be used to escape props
+<MyBox fontSize={16}>A text children</MyBox>
+
+// any expression can be used (ternary operator is an expression, not if else block)
+<MyBox fontSize={size === 'sm' ? 12 : 18} />
+
+// don't be fooled it's no special syntax, we just are just injecting a litteral object
+<MyBox complexObjProps={{ shorty: 42, biggy: NaN }} />
+
+// Shorthand syntax for string props
+<MyBox gap={'kinda-big'} />
+<MyBox gap="kinda-big" />
+
+// you can even deep nest JSX elements
+<GoldenLayout
+  side={<NavMenu item1={true} />}
+  main={myCondition ? <Page index={21} /> : <Alert />}
+/>
+```
+
+## Put it all together
+
+You've got a small interactive example below of our minimal app.
+For now we won't worry about how the state of the app is handle,
+you can tweak the injected props in the _PROPS_ tab.
+
+<SnippetPreview
+  file="snip01"
+  initProps={{
+    name: 'John Doe',
+    lang: 'fr',
+  }}
+/>

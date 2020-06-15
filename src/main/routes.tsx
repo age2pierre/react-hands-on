@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from '@material-ui/icons'
 import React from 'react'
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
 
+import Children from '../pages/children.mdx'
 import HelloWorld from '../pages/hello-world.mdx'
 import Intro from '../pages/intro.mdx'
 
@@ -22,7 +23,12 @@ export const PAGES: PageDef[] = [
   {
     path: '/helloWorld',
     component: () => <HelloWorld />,
-    title: 'Hello world, a minimal app',
+    title: 'Hello world !',
+  },
+  {
+    path: '/children',
+    component: () => <Children />,
+    title: 'Children',
   },
 ]
 

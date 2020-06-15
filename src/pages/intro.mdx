@@ -1,13 +1,42 @@
 import { SnippetPreview } from '../main/SnippetPreview'
 
-# Intro
+# What is react ?
 
-This is MDX!
+## What Wikipedia says about it
 
-<SnippetPreview
-  file={'snip01'}
-  initProps={{
-    lang: 'fr',
-    name: 'Jean',
-  }}
-/>
+> React (also known as React.js or ReactJS) is an open-source JavaScript library for building user interfaces.
+> It is maintained by Facebook and a community of individual developers and companies.
+>
+> React can be used as a base in the development of single-page or mobile applications.
+> However, React is only concerned with rendering data to the DOM, and so creating React applications usually requires the use of additional libraries for state management and routing.
+> Redux and React Router are respective examples of such libraries.
+
+Contrary to Angular, which aims at solving everything problem in front-end dev (http call, routing, renderering...).
+One is a library, the other a framework. One gives you choice, the other headaches 😜.
+
+## What React says about itself
+
+The 3 design principles they advertise are :
+
+> - **Declarative:**
+>   React makes it painless to create interactive UIs.
+>   Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+>   Declarative views make your code more predictable, simpler to understand, and easier to debug.
+> - **Component-Based:**
+>   Build encapsulated components that manage their own state, then compose them to make complex UIs.
+>   Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
+
+No more `*ngFor="let item of items; index as i; trackBy: trackByFn"` or other made-up syntax.
+Most of the time you will use JSX/TSX to write view.
+It's an extension to ECMACSCRIPT, meaning writing JSX is equivalent 1-1 to writing JS.
+It was created for react but is now usable with other project, see [spec](https://facebook.github.io/jsx/)
+
+> - **Learn Once, Write Anywhere:**
+>   We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.
+>   React can also render on the server using Node and power mobile apps using.
+
+`without rewriting existing code.` that much is a lie, each target will need it's own render component.
+But you could share a large part of your logic.
+If you need SSR look at [nextjs](https://nextjs.org/), for static website [gatsby](https://www.gatsbyjs.org/),
+to control the canvas [react-pixi-fiber](https://github.com/michalochman/react-pixi-fiber)
+and for 3D scene [react-three-fiber](https://github.com/react-spring/react-three-fiber).
